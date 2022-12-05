@@ -1,27 +1,12 @@
-fn main() {
-    use std::time::Instant;
-    let now = Instant::now();
-    {
-        let lines = include_str!("../input.txt");
-        let mut totals: Vec<i32> = Vec::new();
-        let mut buff: i32 = 0;
+use std::usize;
 
-        for line in lines.lines() {
-            if line.is_empty() {
-                totals.push(buff);
-                buff = 0;
-                continue;
-            }
-            buff += line.parse::<i32>().unwrap();
-        }
-        totals.push(buff);
-        totals.sort();
-        println!("Part 1: {}", totals[totals.len() - 1]);
-        println!(
-            "Part Two: {}",
-            totals[totals.len() - 1] + totals[totals.len() - 2] + totals[totals.len() - 3]
-        );
-    }
-    let elapsed = now.elapsed();
-    println!("Time elapsed: {:?}", elapsed);
+fn main() {
+    let mut lines = include_str!("../input.txt")
+        .split("\r\n\r\n")
+        .map(|x| return x.lines().flat_map(|x| x.parse::<usize>()).sum::<usize>())
+        .collect::<Vec<usize>>();
+
+    lines.sort_by(|a, b| b.cmp(a));
+
+    println!("{:?}", lines.iter().take(3).sum::<usize>());
 }
