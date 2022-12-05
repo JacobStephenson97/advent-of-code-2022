@@ -22,7 +22,7 @@ fn main() {
     for line in moves.lines() {
         let words = line.split_whitespace().collect::<Vec<&str>>();
         let count = words[1].parse::<usize>().unwrap();
-        let from: usize = words[3].parse().unwrap();
+        let from: usize = words[3].parse::<usize>().unwrap() - 1;
         let to = words[5].parse::<usize>().unwrap() - 1;
         // move_part_one(from, to, count, &mut stacks)
         move_part_two(from, to, count, &mut stacks)
@@ -32,14 +32,14 @@ fn main() {
 }
 // fn move_part_one(from: usize, to: usize, count: usize, stacks: &mut Vec<Vec<char>>) {
 //     for _ in 0..count {
-//         let temp = stacks[from - 1].pop().unwrap();
+//         let temp = stacks[from].pop().unwrap();
 //         stacks[to].push(temp);
 //     }
 // }
 fn move_part_two(from: usize, to: usize, count: usize, stacks: &mut Vec<Vec<char>>) {
     let mut temp_vec: Vec<char> = Vec::new();
     for _ in 0..count {
-        let temp = stacks[from - 1].pop().unwrap();
+        let temp = stacks[from].pop().unwrap();
         temp_vec.push(temp);
     }
     for &c in temp_vec.iter().rev() {
