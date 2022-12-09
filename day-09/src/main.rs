@@ -51,9 +51,9 @@ fn main() {
 }
 
 fn check_tail_pos(head_pos: (i32, i32), tail_pos: (i32, i32)) -> bool {
-    if (head_pos.0 - tail_pos.0).abs() == 1 && (head_pos.1 - tail_pos.1).abs() == 1 {
-        return true;
-    } else if (head_pos.0 - tail_pos.0).abs() + (head_pos.1 - tail_pos.1).abs() <= 1 {
+    if (head_pos.0 - tail_pos.0).abs() == 1 && (head_pos.1 - tail_pos.1).abs() == 1
+        || (head_pos.0 - tail_pos.0).abs() + (head_pos.1 - tail_pos.1).abs() <= 1
+    {
         return true;
     }
     false
